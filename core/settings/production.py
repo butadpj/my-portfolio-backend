@@ -15,7 +15,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nenetelecom$my-portfolio-backend',
         'USER': 'nenetelecom',
-        'PASSWORD': 'madeinjapan',
+        'PASSWORD': 'madeinjapan123',
         'HOST': 'nenetelecom.mysql.pythonanywhere-services.com',
         'PORT': ''
     }
