@@ -5,25 +5,26 @@ DEBUG = False
 CORS_ORIGIN_ALLOW_ALL  = False
 
 CORS_ALLOWED_ORIGINS = [
-    "allowed-origins-here.com"
+    "https://butadpj.vercel.app",
 ]
 
-ALLOWED_HOSTS = ["your_host_name.com"]
+ALLOWED_HOSTS = ["nenetelecom.pythonanywhere.com", "api.butadpj.com", "butadpj.com"]
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'database_name',
-        'USER': 'database_username',
-        'PASSWORD': 'database_password',
-        'HOST': 'host_provider',
+        'NAME': 'nenetelecom$my-portfolio-backend',
+        'USER': 'nenetelecom',
+        'PASSWORD': 'madeinjapan',
+        'HOST': 'nenetelecom.mysql.pythonanywhere-services.com',
         'PORT': ''
     }
 }
 
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES' : ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
+    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',),
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
     ),
-    'DEFAULT_PERMISSION_CLASSES' : ('rest_framework.permissions.IsAuthenticatedOrReadOnly',)
 }
