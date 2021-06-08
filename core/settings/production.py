@@ -13,7 +13,7 @@ ALLOWED_HOSTS = ["nenetelecom.pythonanywhere.com", "api.butadpj.com", "butadpj.c
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nenetelecom$my-portfolio-backend',
+        'NAME': 'nenetelecom$my-portfolio-db',
         'USER': 'nenetelecom',
         'PASSWORD': 'madeinjapan123',
         'HOST': 'nenetelecom.mysql.pythonanywhere-services.com',
