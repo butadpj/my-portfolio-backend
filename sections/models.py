@@ -33,29 +33,34 @@ class About(models.Model):
 
 class Project(models.Model):
     class Meta:
-        verbose_name_plural = 'Project'
+        verbose_name_plural = 'Projects'
 
-    version_title = models.CharField(max_length=30, null=False, blank=False, default="Sample")
     title = models.CharField(max_length=20, null=False, blank=False)
-    created_at = models.DateTimeField(null=True)
-    description = models.CharField(max_length=100, null=False, blank=False, default="Description here")
+    started_at = models.DateField(null=True, blank=False)
+    finished_at = models.DateField(null=True, blank=True)
+    currently_working_on = models.BooleanField(verbose_name="Present?", null=True, blank=True, default=True)
+    description = models.TextField(max_length=250, null=False, blank=False, default="Description here")
     preview_image = models.ImageField(upload_to="project-preview-images", null=True, blank=True)
-    website_link = models.CharField(max_length=30, null=True, blank=True, default="www.website.com")
-    github_link = models.CharField(max_length=30, null=True, blank=True, default="github.com/user/repo")
+    website_link = models.CharField(max_length=100, null=True, blank=True, default="www.website.com")
+    github_link = models.CharField(max_length=100, null=True, blank=True, default="github.com/user/repo")
     # created_at = models.DateField(widget=AdminDateWidget() ,null=False)
 
     def __str__(self):
-        if self.version_title:
-            return self.version_title
-        return (f'{self.id}')
+        return self.title.capitalize()
     
-def tech_stack_images_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/product<id>/<filename>
-    return 'project_{0}/{1}'.format(instance.project.id, filename)
+# def tech_stack_path(instance, filename):
+#     # file will be uploaded to MEDIA_ROOT/product<id>/<filename>
+#     return 'project_{0}/{1}'.format(instance.project.id, filename)
 
-class TechStackImages(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="tech_stack_images", null=True, blank=True)
-    image = models.ImageField(upload_to=tech_stack_images_path, null=True, blank=True)
+class TechStack(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="tech_stacks", null=True, blank=True)
+    stack_name = models.CharField(max_length=20, null=True, blank=True)
+
+    def __str__(self):
+        try:
+            return (f'{self.stack_name}')
+        except:
+            return ""
 
 class JSChallenge(models.Model):
     pass

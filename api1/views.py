@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django_auto_prefetching import AutoPrefetchViewSetMixin
+import django_auto_prefetching
 from rest_framework import viewsets, permissions, status
 from sections.models import *
 from .serializers import *
@@ -21,7 +23,22 @@ class HomeView(viewsets.ModelViewSet):
 class AboutView(viewsets.ModelViewSet):
     queryset = About.objects.all()
     serializer_class = AboutSerializer
+
+
+class ProjectView(AutoPrefetchViewSetMixin, viewsets.ModelViewSet):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
     
+    def get_queryset(self):
+        # Simply do the extra select_related / prefetch_related here
+        # and leave the mixin to do the rest of the work
+        queryset = Project.objects.all()
+        queryset = queryset.select_related()
+        return django_auto_prefetching.prefetch(queryset, self.serializer_class)
+
+class TechStackView(viewsets.ModelViewSet):
+    queryset = TechStack.objects.all()
+    serializer_class = TechStackSerializer
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]

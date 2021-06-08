@@ -6,3 +6,4 @@ pillow==8.1.2
 django-cleanup==5.1.0
 django-cors-headers==3.7.0
 djangorestframework-simplejwt==4.7.1
+django-auto-prefetching==0.1.10

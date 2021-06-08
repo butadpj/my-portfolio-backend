@@ -1,7 +1,10 @@
 from django.contrib import admin
 from .models import *
 
+
+
 # Register your models here.
+
 
 class HomeAdmin(admin.ModelAdmin):
     pass
@@ -10,14 +13,14 @@ class AboutAdmin(admin.ModelAdmin):
     pass
 
 
-class TechStackImagesAdmin(admin.StackedInline):
-    model = TechStackImages
+class TechStackAdmin(admin.StackedInline):
+    model = TechStack
 
 
 class ProjectAdmin(admin.ModelAdmin):
-    inlines = [TechStackImagesAdmin]
+    inlines = [TechStackAdmin]
 
-class TechStackImagesAdmin(admin.ModelAdmin):
+class TechStackAdmin(admin.ModelAdmin):
     pass
 
 class ContactAdmin(admin.ModelAdmin):

@@ -19,8 +19,17 @@ class AboutSerializer(serializers.HyperlinkedModelSerializer):
         fields = [field.name for field in model._meta.fields] 
         fields.insert(0, 'url') # push url field in index 0
 
+
+class TechStackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TechStack
+
+        # to get all fields and put it into single array
+        fields = [field.name for field in model._meta.fields] 
+        fields.insert(0, 'url') # push url field in index 0
+
 class ProjectSerializer(serializers.HyperlinkedModelSerializer):
-    tech_stack_images = serializers.StringRelatedField(many=True)
+    tech_stacks = TechStackSerializer(many=True)
 
     class Meta:
         model = Project
@@ -28,14 +37,8 @@ class ProjectSerializer(serializers.HyperlinkedModelSerializer):
         # to get all fields and put it into single array
         fields = [field.name for field in model._meta.fields] 
         fields.insert(0, 'url') # push url field in index 0
+        fields.insert(1, "tech_stacks")
 
-class TechStackImagesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TechStackImages
-
-        # to get all fields and put it into single array
-        fields = [field.name for field in model._meta.fields] 
-        fields.insert(0, 'url') # push url field in index 0
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

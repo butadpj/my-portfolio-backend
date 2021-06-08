@@ -7,6 +7,8 @@ from . import views
 router = routers.DefaultRouter()
 router.register('home', views.HomeView)
 router.register('about', views.AboutView)
+router.register('projects', views.ProjectView)
+router.register('tech_stacks', views.TechStackView)
 
 
 urlpatterns = [
